@@ -21,19 +21,23 @@ const Dashboard = () => {
     setLoading(true);
     try {
       console.log(`Fetching from: ${API_BASE_URL}/transactions`);
+      //console.log(data);
 
       const { data } = await axios.get(`${API_BASE_URL}/transactions`, {
         params: { month, search, page, perPage },
       });
+      //console.log(data);
 
       console.log("Transactions Data:", data);
       setTransactions(data.transactions || []);
     } catch (error) {
       console.error(" Error fetching transactions:", error.response?.data || error.message);
+      //console.log(data);
     } finally {
       setLoading(false);
     }
 }, [month, search, page]);
+//console.log(data);
 
 
  
@@ -49,6 +53,7 @@ const Dashboard = () => {
       setLoading(false);
     }
   }, [month]);
+  //console.log(data);
 
   const fetchBarChart = useCallback(async () => {
     setLoading(true);
@@ -62,6 +67,7 @@ const Dashboard = () => {
       setLoading(false);
     }
   }, [month]);
+  //console.log(data);
 
   const fetchPieChart = useCallback(async () => {
     setLoading(true);
@@ -75,6 +81,7 @@ const Dashboard = () => {
       setLoading(false);
     }
   }, [month]);
+  //console.log(data);
 
   useEffect(() => {
     fetchTransactions();
@@ -178,11 +185,14 @@ const Dashboard = () => {
                 },
               ],
             }}
+
             options={{ responsive: true }}
+          //console.log(data);
+
           />
         </div>
 
-        <div className="w-1/2 p-4" style={{ display: "none" }}>
+        <div className="w-1/2 p-4">
   <h2 className="text-xl font-bold mb-4">Pie Chart</h2>
   <Pie
     data={{
@@ -206,3 +216,4 @@ const Dashboard = () => {
 
 export default Dashboard;
 
+//console.log(data);
